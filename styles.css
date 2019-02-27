@@ -36,6 +36,14 @@ footer {
     padding-bottom: 7em;
 }
 
+#logout {
+    display: none;
+}
+
+.card-img-top {
+    flex-shrink: 0;
+}
+
 @media(min-width: 576px) and (max-width: 767px) {
 .card-deck {
     display: flex;

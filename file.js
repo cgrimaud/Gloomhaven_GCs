@@ -3,7 +3,7 @@ var user = null;
 $(document).ready(function () {
     $(function () {
         $(".btn-primary").click(function () {
-            $(this).text(function (i, text) {
+            $(this).text(function (text) {
                 return text === "Hide the Party Members" ? "See the Party Members" : "Hide the Party Members";
             })
         });
@@ -29,9 +29,13 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('#loginModal').modal('hide')
 
         /* TODO show logged in ui */
+        $("#login").hide();
+        $("#logout").show();
     } else {
         // No user is signed in.
         /* TODO hided logged in ui / show logged out ui */
+        $("#login").show();
+        $("#logout").hide();
     }
 });
 
@@ -72,3 +76,83 @@ function signOut() {
     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth?authuser=0#signOut
     firebase.auth().signOut();
 }
+
+$("#logout").on("click", signOut);
+
+var database = firebase.database();
+var usersRef = database.ref('users/');
+
+usersRef.on('value', handleUsersUpdate);
+
+function handleUsersUpdate(snapshot){
+    console.log('database snapshot', snapshot.val());
+    var users = Object.values(snapshot.val());
+    buildCharacterCards(users);
+}
+
+function buildCharacterCards(users){
+    $('#party').empty();
+    users.forEach(function(user){
+        user.characters.forEach(function(character){
+            buildCharacterCard(character);
+            buildCharacterModal(character);
+        })
+    })
+}
+
+function buildCharacterCard(character){
+    var characterClass = character.class;
+    var description = character.description;
+    var image = character.image;
+    var level = character.level;
+    var motto = character.motto;
+    var name = character.name;
+    var title = character.title;
+
+  var card = '<div class="card">' + 
+                '<img class="card-img-top" src="' + image + '" alt="' + title + '">' +
+                '<div class="card-body text-center">' +
+                    '<h5>' + name + '</h5>' +
+                    '<p class="card-text">' + title + '</p>' +
+                    '<a data-toggle="modal" href="#' + name + 'Modal" class="card-link">Learn about ' + name + '</a>' +
+                '</div>' +
+            '</div>';
+
+     $('#party').append(card);
+}
+
+function buildCharacterModal(character){
+    var characterClass = character.class;
+    var descriptions = character.description;
+    var image = character.image;
+    var level = character.level;
+    var motto = character.motto;
+    var name = character.name;
+    var title = character.title;
+
+  var modal = '<div class="modal fade" id="' + name + 'Modal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">' +
+                '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                    '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                            '<h5 class="modal-title">' + title + '</h5>' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                        '</div>' +
+                        '<div class="modal-body">';
+                            descriptions.forEach(function(description){
+                                modal += '<p>' + description + '</p>'
+                            })
+                
+                        modal += '</div>' +
+                        '<div class="modal-footer">' +
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</div>';
+
+     $('#party').append(modal);
+}
+
+    
