@@ -194,7 +194,7 @@ function buildCharacterCard(character){
     var name = character.name;
     var title = character.title;
 
-// builds character card
+// builds character card template
   var card = '<div class="card">' + 
                 '<img class="card-img-top" src="' + image + '" alt="' + title + '">' +
                 '<div class="card-body text-center">' +
@@ -218,7 +218,7 @@ function buildCharacterModal(character){
     var name = character.name;
     var title = character.title;
 
-// builds modal 
+// builds modal template
   var modal = '<div class="modal fade" id="' + name + 'Modal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">' +
                 '<div class="modal-dialog modal-dialog-centered" role="document">' +
                     '<div class="modal-content">' +

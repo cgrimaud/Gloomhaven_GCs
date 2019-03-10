@@ -44,6 +44,19 @@ footer {
     flex-shrink: 0;
 }
 
+/* Profile.html styles */
+
+#userProfile {
+    margin-top: 4em; 
+}
+
+.profileCharacters {
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+    
+
 @media(min-width: 576px) and (max-width: 767px) {
 .card-deck {
     display: flex;

@@ -34,9 +34,65 @@
             <span class="navbar-brand mb-0 h1">GC.com</span>
         </div>
     </nav>
+
     <div class="container">
-       
-        </div>
+       <form  id="userProfile">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control userProfileName" id="firstName" placeholder="Christy">
+            </div>
+            <div class="form-group">
+                <label for="Last Name">Last Name</label>
+                <input type="text" class="form-control userProfileName" id="lastName" placeholder="Grimaud">
+            </div>
+            <div>
+                <input class="btn btn-outline-success my-2 my-sm-0" type="button" value="Edit">
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1 class="profileCharacters">Characters</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Character Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">Party</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Walnut</th>
+                    <td>4</td>
+                    <td>GC's</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Chewie</th>
+                    <td>99</td>
+                    <td>The Chonks</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Butters</th>
+                    <td>99</td>
+                    <td>The Chonks</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 
     
 
